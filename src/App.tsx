@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
@@ -69,8 +68,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard');
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -84,7 +81,7 @@ function App() {
             <Route path="/experiments/:id" element={<ExperimentReport />} />
             <Route path="/metrics" element={<DashboardMetrics />} />
             <Route path="/analysis" element={<DashboardMetrics />} />
-            <Route path="*" element={<Dashboard />} />˳þ
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </Layout>
       </Router>

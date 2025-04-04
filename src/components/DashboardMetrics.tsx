@@ -117,17 +117,13 @@ export default function DashboardMetrics() {
   // Update tab change handler to include sliding animation
   const handleTabChange = (tab: 'coverage' | 'crash' | 'performance', event: React.MouseEvent<HTMLButtonElement>) => {
     setActiveTab(tab);
+    
     // Update the sliding indicator position
     const button = event.currentTarget;
     setTabIndicatorStyle({
       left: button.offsetLeft,
       width: button.offsetWidth,
     });
-  };
-
-  // Function to determine bar color based on crash count
-  const getCrashBarColor = (crashes: number): string => {
-    return crashes > 8 ? '#ef4444' : '#6366f1';
   };
 
   return (
@@ -529,15 +525,3 @@ export default function DashboardMetrics() {
     </div>
   );
 }
-
-// Helper component for metric items
-const MetricItem = ({ label, value, trend }: { label: string; value: string; trend: 'up' | 'down' | 'neutral' }) => (
-  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-    <span className="text-gray-600">{label}</span>
-    <div className="flex items-center gap-2">
-      <span className="font-medium">{value}</span>
-      {trend === 'up' && <ArrowUpIcon className="w-4 h-4 text-green-600" />}
-      {trend === 'down' && <ArrowDownIcon className="w-4 h-4 text-red-600" />}
-    </div>
-  </div>
-);

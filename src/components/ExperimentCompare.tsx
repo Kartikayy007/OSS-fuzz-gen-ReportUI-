@@ -27,10 +27,10 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  Grid as MuiGrid
 } from '@mui/material';
 import {
-  CompareArrows as CompareIcon,
   SwapHoriz as SwapIcon,
   ArrowUpward as ArrowUpIcon,
   ArrowDownward as ArrowDownIcon,
@@ -419,8 +419,8 @@ export default function ExperimentCompare() {
             
             {/* Summary tab */}
             <TabPanel value={tabValue} index={0}>
-              <Grid container spacing={3}>
-                <Grid xs={12}>
+              <MuiGrid container spacing={3}>
+                <MuiGrid item xs={12}>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Typography variant="h6" gutterBottom>
                       Key Differences
@@ -540,14 +540,14 @@ export default function ExperimentCompare() {
                       </Table>
                     </TableContainer>
                   </Box>
-                </Grid>
-              </Grid>
+                </MuiGrid>
+              </MuiGrid>
             </TabPanel>
             
             {/* Coverage tab */}
             <TabPanel value={tabValue} index={1}>
-              <Grid container spacing={3}>
-                <Grid xs={12}>
+              <MuiGrid container spacing={3}>
+                <MuiGrid item xs={12}>
                   <Paper sx={{ p: 3 }}>
                     <Typography variant="h6" gutterBottom>
                       Coverage Trend Comparison
@@ -564,14 +564,14 @@ export default function ExperimentCompare() {
                       </LineChart>
                     </ResponsiveContainer>
                   </Paper>
-                </Grid>
-              </Grid>
+                </MuiGrid>
+              </MuiGrid>
             </TabPanel>
             
             {/* Crashes tab */}
             <TabPanel value={tabValue} index={2}>
-              <Grid container spacing={3}>
-                <Grid xs={12} md={6}>
+              <MuiGrid container spacing={3}>
+                <MuiGrid item xs={12} md={6}>
                   <Paper sx={{ p: 3, height: '100%' }}>
                     <Typography variant="h6" gutterBottom>
                       Crashes Found
@@ -588,8 +588,8 @@ export default function ExperimentCompare() {
                       </LineChart>
                     </ResponsiveContainer>
                   </Paper>
-                </Grid>
-                <Grid xs={12} md={6}>
+                </MuiGrid>
+                <MuiGrid item xs={12} md={6}>
                   <Paper sx={{ p: 3, height: '100%' }}>
                     <Typography variant="h6" gutterBottom>
                       Crash Types Distribution
@@ -646,14 +646,14 @@ export default function ExperimentCompare() {
                       ))}
                     </Box>
                   </Paper>
-                </Grid>
-              </Grid>
+                </MuiGrid>
+              </MuiGrid>
             </TabPanel>
             
             {/* Performance tab */}
             <TabPanel value={tabValue} index={3}>
-              <Grid container spacing={3}>
-                <Grid xs={12}>
+              <MuiGrid container spacing={3}>
+                <MuiGrid item xs={12}>
                   <Paper sx={{ p: 3 }}>
                     <Typography variant="h6" gutterBottom>
                       Performance Metrics
@@ -677,14 +677,14 @@ export default function ExperimentCompare() {
                       </BarChart>
                     </ResponsiveContainer>
                   </Paper>
-                </Grid>
-              </Grid>
+                </MuiGrid>
+              </MuiGrid>
             </TabPanel>
             
             {/* Configuration tab */}
             <TabPanel value={tabValue} index={4}>
-              <Grid container spacing={3}>
-                <Grid xs={12} md={6}>
+              <MuiGrid container spacing={3}>
+                <MuiGrid item xs={12} md={6}>
                   <Card variant="outlined">
                     <CardHeader
                       title={leftData.name}
@@ -735,8 +735,8 @@ export default function ExperimentCompare() {
                       </Box>
                     </CardContent>
                   </Card>
-                </Grid>
-                <Grid xs={12} md={6}>
+                </MuiGrid>
+                <MuiGrid item xs={12} md={6}>
                   <Card variant="outlined">
                     <CardHeader
                       title={rightData.name}
@@ -787,8 +787,8 @@ export default function ExperimentCompare() {
                       </Box>
                     </CardContent>
                   </Card>
-                </Grid>
-              </Grid>
+                </MuiGrid>
+              </MuiGrid>
             </TabPanel>
           </Box>
         </>
