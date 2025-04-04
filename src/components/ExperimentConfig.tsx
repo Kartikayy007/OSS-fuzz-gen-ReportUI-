@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Paper,
@@ -9,7 +9,6 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Grid,
   FormControl,
   InputLabel,
   Select,
@@ -22,27 +21,11 @@ import {
   Slider,
   Breadcrumbs,
   Link,
-  FormHelperText,
-  Tooltip,
-  IconButton,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Card,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions
 } from '@mui/material';
-import {
-  ExpandMore as ExpandMoreIcon,
-  Info as InfoIcon,
-  Help as HelpIcon,
-  Code as CodeIcon,
-  CloudUpload as CloudUploadIcon,
-  PlayArrow as StartIcon,
-  Save as SaveIcon
-} from '@mui/icons-material';
 
 // Mock data for project selections
 const projectOptions = [
@@ -85,15 +68,6 @@ const durationOptions = [
   { value: '7d', label: '7 days' },
   { value: '14d', label: '14 days' },
   { value: '30d', label: '30 days' }
-];
-
-// Sanitizer options
-const sanitizerOptions = [
-  { value: 'address', label: 'AddressSanitizer (ASan)', description: 'Detects memory errors like buffer overflows, use-after-free, etc.' },
-  { value: 'undefined', label: 'UndefinedBehaviorSanitizer (UBSan)', description: 'Detects undefined behavior like integer overflow' },
-  { value: 'memory', label: 'MemorySanitizer (MSan)', description: 'Detects uninitialized memory reads' },
-  { value: 'thread', label: 'ThreadSanitizer (TSan)', description: 'Detects data races and deadlocks' },
-  { value: 'leak', label: 'LeakSanitizer (LSan)', description: 'Detects memory leaks' }
 ];
 
 const steps = ['Project Setup', 'Fuzzing Configuration', 'Infrastructure', 'Review & Run'];

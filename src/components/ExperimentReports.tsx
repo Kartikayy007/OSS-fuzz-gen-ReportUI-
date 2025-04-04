@@ -12,7 +12,6 @@ import {
   TableHead, 
   TableRow, 
   Chip,
-  Grid,
   IconButton,
   FormControl,
   InputLabel,
@@ -28,7 +27,6 @@ import {
 } from '@mui/material';
 import { 
   Search as SearchIcon, 
-  FilterAlt as FilterIcon,
   Clear as ClearIcon,
   Refresh as RefreshIcon,
   Visibility as VisibilityIcon,
@@ -151,7 +149,7 @@ export default function ExperimentReports() {
   const [status, setStatus] = useState('All Statuses');
   const [timeRange, setTimeRange] = useState('Any Time');
   const [activeFilters, setActiveFilters] = useState(0);
-  const [experiments, setExperiments] = useState(mockExperiments);
+  const [experiments] = useState(mockExperiments);
   const [filteredExperiments, setFilteredExperiments] = useState(mockExperiments);
   const [isSearching, setIsSearching] = useState(false);
 
@@ -243,7 +241,6 @@ export default function ExperimentReports() {
 
       {/* Search and Filter Section */}
       <Paper 
-        elevation={0} 
         sx={{ 
           p: 2, 
           mb: 3, 
@@ -251,9 +248,9 @@ export default function ExperimentReports() {
           border: '1px solid #e0e0e0',
         }}
       >
-        <Grid container spacing={2}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2 }}>
           {/* Main search box */}
-          <Grid lg={6} md={6} sm={12} xs={12}>
+          <Box>
             <TextField
               fullWidth
               placeholder="Search experiments by name, ID, project or tags..."
@@ -275,10 +272,10 @@ export default function ExperimentReports() {
               }}
               sx={{ backgroundColor: 'white' }}
             />
-          </Grid>
+          </Box>
           
           {/* Filter buttons/panel toggle */}
-          <Grid lg={6} md={6} sm={12} xs={12}>
+          <Box>
             <Box sx={{ display: 'flex', gap: 2, flexWrap: { xs: 'wrap', md: 'nowrap' } }}>
               <Badge badgeContent={activeFilters} color="primary" sx={{ '& .MuiBadge-badge': { top: 8, right: 8 } }}>
                 <FormControl sx={{ minWidth: 120 }}>
@@ -348,8 +345,8 @@ export default function ExperimentReports() {
                 </Button>
               )}
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Paper>
       
       {/* Active filters visualization */}

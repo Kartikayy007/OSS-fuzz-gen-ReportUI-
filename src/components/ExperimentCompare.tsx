@@ -7,9 +7,7 @@ import {
   InputLabel, 
   Select, 
   MenuItem, 
-  Button, 
   Divider, 
-  Grid, 
   Chip,
   Card,
   CardContent,
@@ -27,14 +25,12 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Grid as MuiGrid
+  TableRow
 } from '@mui/material';
 import {
   SwapHoriz as SwapIcon,
   ArrowUpward as ArrowUpIcon,
-  ArrowDownward as ArrowDownIcon,
-  Info as InfoIcon
+  ArrowDownward as ArrowDownIcon
 } from '@mui/icons-material';
 import { 
   LineChart,
@@ -419,376 +415,356 @@ export default function ExperimentCompare() {
             
             {/* Summary tab */}
             <TabPanel value={tabValue} index={0}>
-              <MuiGrid container spacing={3}>
-                <MuiGrid item xs={12}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <Typography variant="h6" gutterBottom>
-                      Key Differences
-                    </Typography>
-                    <TableContainer component={Paper}>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Metric</TableCell>
-                            <TableCell>{leftData.name}</TableCell>
-                            <TableCell>{rightData.name}</TableCell>
-                            <TableCell>Difference</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          <TableRow>
-                            <TableCell>Coverage</TableCell>
-                            <TableCell>{leftData.coverage.toFixed(1)}%</TableCell>
-                            <TableCell>{rightData.coverage.toFixed(1)}%</TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {differences?.coverage.isPositive ? (
-                                  <ArrowUpIcon color="success" fontSize="small" />
-                                ) : differences?.coverage.isNeutral ? (
-                                  "–"
-                                ) : (
-                                  <ArrowDownIcon color="error" fontSize="small" />
-                                )}
-                                <Typography 
-                                  variant="body2" 
-                                  color={differences?.coverage.isPositive ? 'success.main' : 
-                                         differences?.coverage.isNeutral ? 'text.secondary' : 'error.main'}
-                                  sx={{ ml: 1 }}
-                                >
-                                  {Math.abs(differences?.coverage.diff || 0).toFixed(1)}% 
-                                  ({Math.abs(differences?.coverage.percent || 0).toFixed(1)}%)
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Crashes Found</TableCell>
-                            <TableCell>{leftData.crashes}</TableCell>
-                            <TableCell>{rightData.crashes}</TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {differences?.crashes.isPositive ? (
-                                  <ArrowUpIcon color="success" fontSize="small" />
-                                ) : differences?.crashes.isNeutral ? (
-                                  "–"
-                                ) : (
-                                  <ArrowDownIcon color="error" fontSize="small" />
-                                )}
-                                <Typography 
-                                  variant="body2" 
-                                  color={differences?.crashes.isPositive ? 'success.main' : 
-                                         differences?.crashes.isNeutral ? 'text.secondary' : 'error.main'}
-                                  sx={{ ml: 1 }}
-                                >
-                                  {Math.abs(differences?.crashes.diff || 0)} 
-                                  ({Math.abs(differences?.crashes.percent || 0).toFixed(1)}%)
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Unique Crashes</TableCell>
-                            <TableCell>{leftData.uniqueCrashes}</TableCell>
-                            <TableCell>{rightData.uniqueCrashes}</TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {differences?.uniqueCrashes.isPositive ? (
-                                  <ArrowUpIcon color="success" fontSize="small" />
-                                ) : differences?.uniqueCrashes.isNeutral ? (
-                                  "–"
-                                ) : (
-                                  <ArrowDownIcon color="error" fontSize="small" />
-                                )}
-                                <Typography 
-                                  variant="body2" 
-                                  color={differences?.uniqueCrashes.isPositive ? 'success.main' : 
-                                         differences?.uniqueCrashes.isNeutral ? 'text.secondary' : 'error.main'}
-                                  sx={{ ml: 1 }}
-                                >
-                                  {Math.abs(differences?.uniqueCrashes.diff || 0)} 
-                                  ({Math.abs(differences?.uniqueCrashes.percent || 0).toFixed(1)}%)
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Executions/sec</TableCell>
-                            <TableCell>{leftData.execsPerSec.toLocaleString()}</TableCell>
-                            <TableCell>{rightData.execsPerSec.toLocaleString()}</TableCell>
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {differences?.execsPerSec.isPositive ? (
-                                  <ArrowUpIcon color="success" fontSize="small" />
-                                ) : differences?.execsPerSec.isNeutral ? (
-                                  "–"
-                                ) : (
-                                  <ArrowDownIcon color="error" fontSize="small" />
-                                )}
-                                <Typography 
-                                  variant="body2" 
-                                  color={differences?.execsPerSec.isPositive ? 'success.main' : 
-                                         differences?.execsPerSec.isNeutral ? 'text.secondary' : 'error.main'}
-                                  sx={{ ml: 1 }}
-                                >
-                                  {Math.abs(differences?.execsPerSec.diff || 0).toLocaleString()} 
-                                  ({Math.abs(differences?.execsPerSec.percent || 0).toFixed(1)}%)
-                                </Typography>
-                              </Box>
-                            </TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  </Box>
-                </MuiGrid>
-              </MuiGrid>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Typography variant="h6" gutterBottom>
+                  Key Differences
+                </Typography>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Metric</TableCell>
+                        <TableCell>{leftData.name}</TableCell>
+                        <TableCell>{rightData.name}</TableCell>
+                        <TableCell>Difference</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>Coverage</TableCell>
+                        <TableCell>{leftData.coverage.toFixed(1)}%</TableCell>
+                        <TableCell>{rightData.coverage.toFixed(1)}%</TableCell>
+                        <TableCell>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {differences?.coverage.isPositive ? (
+                              <ArrowUpIcon color="success" fontSize="small" />
+                            ) : differences?.coverage.isNeutral ? (
+                              "–"
+                            ) : (
+                              <ArrowDownIcon color="error" fontSize="small" />
+                            )}
+                            <Typography 
+                              variant="body2" 
+                              color={differences?.coverage.isPositive ? 'success.main' : 
+                                     differences?.coverage.isNeutral ? 'text.secondary' : 'error.main'}
+                              sx={{ ml: 1 }}
+                            >
+                              {Math.abs(differences?.coverage.diff || 0).toFixed(1)}% 
+                              ({Math.abs(differences?.coverage.percent || 0).toFixed(1)}%)
+                            </Typography>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>Crashes Found</TableCell>
+                        <TableCell>{leftData.crashes}</TableCell>
+                        <TableCell>{rightData.crashes}</TableCell>
+                        <TableCell>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {differences?.crashes.isPositive ? (
+                              <ArrowUpIcon color="success" fontSize="small" />
+                            ) : differences?.crashes.isNeutral ? (
+                              "–"
+                            ) : (
+                              <ArrowDownIcon color="error" fontSize="small" />
+                            )}
+                            <Typography 
+                              variant="body2" 
+                              color={differences?.crashes.isPositive ? 'success.main' : 
+                                     differences?.crashes.isNeutral ? 'text.secondary' : 'error.main'}
+                              sx={{ ml: 1 }}
+                            >
+                              {Math.abs(differences?.crashes.diff || 0)} 
+                              ({Math.abs(differences?.crashes.percent || 0).toFixed(1)}%)
+                            </Typography>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>Unique Crashes</TableCell>
+                        <TableCell>{leftData.uniqueCrashes}</TableCell>
+                        <TableCell>{rightData.uniqueCrashes}</TableCell>
+                        <TableCell>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {differences?.uniqueCrashes.isPositive ? (
+                              <ArrowUpIcon color="success" fontSize="small" />
+                            ) : differences?.uniqueCrashes.isNeutral ? (
+                              "–"
+                            ) : (
+                              <ArrowDownIcon color="error" fontSize="small" />
+                            )}
+                            <Typography 
+                              variant="body2" 
+                              color={differences?.uniqueCrashes.isPositive ? 'success.main' : 
+                                     differences?.uniqueCrashes.isNeutral ? 'text.secondary' : 'error.main'}
+                              sx={{ ml: 1 }}
+                            >
+                              {Math.abs(differences?.uniqueCrashes.diff || 0)} 
+                              ({Math.abs(differences?.uniqueCrashes.percent || 0).toFixed(1)}%)
+                            </Typography>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>Executions/sec</TableCell>
+                        <TableCell>{leftData.execsPerSec.toLocaleString()}</TableCell>
+                        <TableCell>{rightData.execsPerSec.toLocaleString()}</TableCell>
+                        <TableCell>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {differences?.execsPerSec.isPositive ? (
+                              <ArrowUpIcon color="success" fontSize="small" />
+                            ) : differences?.execsPerSec.isNeutral ? (
+                              "–"
+                            ) : (
+                              <ArrowDownIcon color="error" fontSize="small" />
+                            )}
+                            <Typography 
+                              variant="body2" 
+                              color={differences?.execsPerSec.isPositive ? 'success.main' : 
+                                     differences?.execsPerSec.isNeutral ? 'text.secondary' : 'error.main'}
+                              sx={{ ml: 1 }}
+                            >
+                              {Math.abs(differences?.execsPerSec.diff || 0).toLocaleString()} 
+                              ({Math.abs(differences?.execsPerSec.percent || 0).toFixed(1)}%)
+                            </Typography>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
             </TabPanel>
             
             {/* Coverage tab */}
             <TabPanel value={tabValue} index={1}>
-              <MuiGrid container spacing={3}>
-                <MuiGrid item xs={12}>
-                  <Paper sx={{ p: 3 }}>
-                    <Typography variant="h6" gutterBottom>
-                      Coverage Trend Comparison
-                    </Typography>
-                    <ResponsiveContainer width="100%" height={400}>
-                      <LineChart data={mergedCoverageData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis unit="%" />
-                        <RechartsTooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey={leftData.name} stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} />
-                        <Line type="monotone" dataKey={rightData.name} stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </Paper>
-                </MuiGrid>
-              </MuiGrid>
+              <Paper sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Coverage Trend Comparison
+                </Typography>
+                <ResponsiveContainer width="100%" height={400}>
+                  <LineChart data={mergedCoverageData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" />
+                    <YAxis unit="%" />
+                    <RechartsTooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey={leftData.name} stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} />
+                    <Line type="monotone" dataKey={rightData.name} stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </Paper>
             </TabPanel>
             
             {/* Crashes tab */}
             <TabPanel value={tabValue} index={2}>
-              <MuiGrid container spacing={3}>
-                <MuiGrid item xs={12} md={6}>
-                  <Paper sx={{ p: 3, height: '100%' }}>
-                    <Typography variant="h6" gutterBottom>
-                      Crashes Found
-                    </Typography>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <LineChart data={mergedCrashesData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis />
-                        <RechartsTooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey={leftData.name} stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} />
-                        <Line type="monotone" dataKey={rightData.name} stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </Paper>
-                </MuiGrid>
-                <MuiGrid item xs={12} md={6}>
-                  <Paper sx={{ p: 3, height: '100%' }}>
-                    <Typography variant="h6" gutterBottom>
-                      Crash Types Distribution
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Typography variant="subtitle2" color="text.secondary">
-                          {leftData.name}
-                        </Typography>
-                        <Typography variant="subtitle2" color="text.secondary">
-                          Crashes
-                        </Typography>
-                      </Box>
-                      {leftData.crashTypes.map((crashType, index) => (
-                        <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <Typography variant="body2">{crashType.type}</Typography>
-                          <Chip 
-                            label={crashType.count} 
-                            size="small" 
-                            color={
-                              crashType.type.includes('Heap') ? 'error' :
-                              crashType.type.includes('Use After') ? 'warning' :
-                              crashType.type.includes('Null') ? 'info' :
-                              'default'
-                            }
-                          />
-                        </Box>
-                      ))}
-                      
-                      <Divider sx={{ my: 1 }} />
-                      
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Typography variant="subtitle2" color="text.secondary">
-                          {rightData.name}
-                        </Typography>
-                        <Typography variant="subtitle2" color="text.secondary">
-                          Crashes
-                        </Typography>
-                      </Box>
-                      {rightData.crashTypes.map((crashType, index) => (
-                        <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <Typography variant="body2">{crashType.type}</Typography>
-                          <Chip 
-                            label={crashType.count} 
-                            size="small" 
-                            color={
-                              crashType.type.includes('Heap') ? 'error' :
-                              crashType.type.includes('Use After') ? 'warning' :
-                              crashType.type.includes('Null') ? 'info' :
-                              'default'
-                            }
-                          />
-                        </Box>
-                      ))}
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
+                <Paper sx={{ p: 3, height: '100%' }}>
+                  <Typography variant="h6" gutterBottom>
+                    Crashes Found
+                  </Typography>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={mergedCrashesData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="day" />
+                      <YAxis />
+                      <RechartsTooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey={leftData.name} stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} />
+                      <Line type="monotone" dataKey={rightData.name} stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </Paper>
+                <Paper sx={{ p: 3, height: '100%' }}>
+                  <Typography variant="h6" gutterBottom>
+                    Crash Types Distribution
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        {leftData.name}
+                      </Typography>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Crashes
+                      </Typography>
                     </Box>
-                  </Paper>
-                </MuiGrid>
-              </MuiGrid>
+                    {leftData.crashTypes.map((crashType, index) => (
+                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography variant="body2">{crashType.type}</Typography>
+                        <Chip 
+                          label={crashType.count} 
+                          size="small" 
+                          color={
+                            crashType.type.includes('Heap') ? 'error' :
+                            crashType.type.includes('Use After') ? 'warning' :
+                            crashType.type.includes('Null') ? 'info' :
+                            'default'
+                          }
+                        />
+                      </Box>
+                    ))}
+                    
+                    <Divider sx={{ my: 1 }} />
+                    
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        {rightData.name}
+                      </Typography>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Crashes
+                      </Typography>
+                    </Box>
+                    {rightData.crashTypes.map((crashType, index) => (
+                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography variant="body2">{crashType.type}</Typography>
+                        <Chip 
+                          label={crashType.count} 
+                          size="small" 
+                          color={
+                            crashType.type.includes('Heap') ? 'error' :
+                            crashType.type.includes('Use After') ? 'warning' :
+                            crashType.type.includes('Null') ? 'info' :
+                            'default'
+                          }
+                        />
+                      </Box>
+                    ))}
+                  </Box>
+                </Paper>
+              </Box>
             </TabPanel>
             
             {/* Performance tab */}
             <TabPanel value={tabValue} index={3}>
-              <MuiGrid container spacing={3}>
-                <MuiGrid item xs={12}>
-                  <Paper sx={{ p: 3 }}>
-                    <Typography variant="h6" gutterBottom>
-                      Performance Metrics
-                    </Typography>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <BarChart
-                        data={[
-                          { name: 'Executions/sec', [leftData.name]: leftData.execsPerSec, [rightData.name]: rightData.execsPerSec },
-                          { name: 'Peak RSS (MB)', [leftData.name]: leftData.peakRSS, [rightData.name]: rightData.peakRSS },
-                          { name: 'CPU Usage (%)', [leftData.name]: leftData.cpuUsage, [rightData.name]: rightData.cpuUsage },
-                        ]}
-                        layout="vertical"
-                      >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis type="number" />
-                        <YAxis dataKey="name" type="category" />
-                        <RechartsTooltip />
-                        <Legend />
-                        <Bar dataKey={leftData.name} fill="#8884d8" />
-                        <Bar dataKey={rightData.name} fill="#82ca9d" />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </Paper>
-                </MuiGrid>
-              </MuiGrid>
+              <Paper sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Performance Metrics
+                </Typography>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart
+                    data={[
+                      { name: 'Executions/sec', [leftData.name]: leftData.execsPerSec, [rightData.name]: rightData.execsPerSec },
+                      { name: 'Peak RSS (MB)', [leftData.name]: leftData.peakRSS, [rightData.name]: rightData.peakRSS },
+                      { name: 'CPU Usage (%)', [leftData.name]: leftData.cpuUsage, [rightData.name]: rightData.cpuUsage },
+                    ]}
+                    layout="vertical"
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis dataKey="name" type="category" />
+                    <RechartsTooltip />
+                    <Legend />
+                    <Bar dataKey={leftData.name} fill="#8884d8" />
+                    <Bar dataKey={rightData.name} fill="#82ca9d" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </Paper>
             </TabPanel>
             
             {/* Configuration tab */}
             <TabPanel value={tabValue} index={4}>
-              <MuiGrid container spacing={3}>
-                <MuiGrid item xs={12} md={6}>
-                  <Card variant="outlined">
-                    <CardHeader
-                      title={leftData.name}
-                      subheader={`${leftData.project} - ${leftData.fuzzer}`}
-                    />
-                    <Divider />
-                    <CardContent>
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Duration:
-                          </Typography>
-                          <Typography variant="body2">
-                            {leftData.duration}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Start Date:
-                          </Typography>
-                          <Typography variant="body2">
-                            {leftData.startDate}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            End Date:
-                          </Typography>
-                          <Typography variant="body2">
-                            {leftData.endDate}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Sanitizers:
-                          </Typography>
-                          <Box>
-                            {leftData.sanitizers.map((sanitizer, index) => (
-                              <Chip
-                                key={index}
-                                label={sanitizer}
-                                size="small"
-                                sx={{ mr: 0.5, mb: 0.5 }}
-                              />
-                            ))}
-                          </Box>
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
+                <Card variant="outlined">
+                  <CardHeader
+                    title={leftData.name}
+                    subheader={`${leftData.project} - ${leftData.fuzzer}`}
+                  />
+                  <Divider />
+                  <CardContent>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Duration:
+                        </Typography>
+                        <Typography variant="body2">
+                          {leftData.duration}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Start Date:
+                        </Typography>
+                        <Typography variant="body2">
+                          {leftData.startDate}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          End Date:
+                        </Typography>
+                        <Typography variant="body2">
+                          {leftData.endDate}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Sanitizers:
+                        </Typography>
+                        <Box>
+                          {leftData.sanitizers.map((sanitizer, index) => (
+                            <Chip
+                              key={index}
+                              label={sanitizer}
+                              size="small"
+                              sx={{ mr: 0.5, mb: 0.5 }}
+                            />
+                          ))}
                         </Box>
                       </Box>
-                    </CardContent>
-                  </Card>
-                </MuiGrid>
-                <MuiGrid item xs={12} md={6}>
-                  <Card variant="outlined">
-                    <CardHeader
-                      title={rightData.name}
-                      subheader={`${rightData.project} - ${rightData.fuzzer}`}
-                    />
-                    <Divider />
-                    <CardContent>
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Duration:
-                          </Typography>
-                          <Typography variant="body2">
-                            {rightData.duration}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Start Date:
-                          </Typography>
-                          <Typography variant="body2">
-                            {rightData.startDate}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            End Date:
-                          </Typography>
-                          <Typography variant="body2">
-                            {rightData.endDate}
-                          </Typography>
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <Typography variant="body2" color="text.secondary">
-                            Sanitizers:
-                          </Typography>
-                          <Box>
-                            {rightData.sanitizers.map((sanitizer, index) => (
-                              <Chip
-                                key={index}
-                                label={sanitizer}
-                                size="small"
-                                sx={{ mr: 0.5, mb: 0.5 }}
-                              />
-                            ))}
-                          </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+                <Card variant="outlined">
+                  <CardHeader
+                    title={rightData.name}
+                    subheader={`${rightData.project} - ${rightData.fuzzer}`}
+                  />
+                  <Divider />
+                  <CardContent>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Duration:
+                        </Typography>
+                        <Typography variant="body2">
+                          {rightData.duration}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Start Date:
+                        </Typography>
+                        <Typography variant="body2">
+                          {rightData.startDate}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          End Date:
+                        </Typography>
+                        <Typography variant="body2">
+                          {rightData.endDate}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary">
+                          Sanitizers:
+                        </Typography>
+                        <Box>
+                          {rightData.sanitizers.map((sanitizer, index) => (
+                            <Chip
+                              key={index}
+                              label={sanitizer}
+                              size="small"
+                              sx={{ mr: 0.5, mb: 0.5 }}
+                            />
+                          ))}
                         </Box>
                       </Box>
-                    </CardContent>
-                  </Card>
-                </MuiGrid>
-              </MuiGrid>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
             </TabPanel>
           </Box>
         </>
