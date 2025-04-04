@@ -11,7 +11,6 @@ import {
   IconButton,
   Box,
   Divider,
-  Avatar,
   InputBase,
   Badge,
   Menu,
@@ -104,9 +103,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     setNotificationsAnchorEl(null);
   };
 
-  const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setUserMenuAnchorEl(event.currentTarget);
-  };
 
   const handleUserMenuClose = () => {
     setUserMenuAnchorEl(null);

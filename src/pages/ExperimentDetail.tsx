@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { 
-  ChartIcon, FileTextIcon, CodeIcon, BugIcon, 
-  ClockIcon, ServerIcon, DownloadIcon, RefreshCwIcon
+  ChartLine as ChartIcon, FileText as FileTextIcon, Code as CodeIcon, Bug as BugIcon, 
+  Server as ServerIcon, Download as DownloadIcon, RefreshCw as RefreshCwIcon
 } from 'lucide-react';
 
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -37,7 +37,7 @@ const experimentData = {
 const ExperimentDetail: React.FC = () => {
   const { experimentId } = useParams<{ experimentId: string }>();
   const [activeTab, setActiveTab] = useState<'overview' | 'coverage' | 'crashes' | 'logs'>('overview');
-
+  console.log(experimentId);
   // Breadcrumb items for this experiment
   const breadcrumbItems = [
     { label: 'Experiments', path: '/experiments' },

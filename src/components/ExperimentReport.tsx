@@ -12,7 +12,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Divider,
   IconButton,
   Link as MuiLink,
   LinearProgress,
@@ -43,7 +42,6 @@ import {
   Search as SearchIcon,
   FilterList as FilterListIcon,
   MoreVert as MoreVertIcon,
-  ArrowDropDown as ArrowDropDownIcon,
   AccessTime as AccessTimeIcon,
   ExpandMore as ExpandMoreIcon,
   Close as CloseIcon
@@ -167,7 +165,7 @@ export default function ExperimentReport() {
     setSearchQuery(event.target.value);
   };
 
-  const handleAccordionChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+  const handleAccordionChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
   };
 
